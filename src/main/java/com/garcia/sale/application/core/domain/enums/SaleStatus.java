@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 @NoArgsConstructor
 @AllArgsConstructor
-public enum VendaStatus {
+public enum SaleStatus {
     PENDENTE(1L),
 
     FINALIZADA(2L),
@@ -20,9 +20,9 @@ public enum VendaStatus {
         return statusId;
     }
 
-    public static VendaStatus toEnum(Long id) {
+    public static SaleStatus toEnum(Long id) {
         if (id == null) return null;
-        return Arrays.stream(VendaStatus.values())
+        return Arrays.stream(SaleStatus.values())
                 .filter(status -> id.equals(status.getStatusId()))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Id do status não é valido: " + id));
