@@ -3,10 +3,11 @@ package com.garcia.sale.application.core.usecase;
 import com.garcia.sale.application.core.domain.Sale;
 import com.garcia.sale.application.core.domain.enums.SaleEvent;
 import com.garcia.sale.application.core.domain.enums.SaleStatus;
+import com.garcia.sale.application.ports.in.CreateSaleInputPort;
 import com.garcia.sale.application.ports.out.SaveSaleOutputPort;
 import com.garcia.sale.application.ports.out.SendCreatedSaleOutputPort;
 
-public class CreateSaleUseCase {
+public class CreateSaleUseCase implements CreateSaleInputPort {
 
     private final SaveSaleOutputPort saveSaleOutputPort;
 
@@ -17,6 +18,7 @@ public class CreateSaleUseCase {
         this.sendCreatedSaleOutputPort = sendCreatedSaleOutputPort;
     }
 
+    @Override
     public void create(Sale sale) {
         sale.setStatus(SaleStatus.PENDENTE);
         var saleResponse = saveSaleOutputPort.save(sale);
